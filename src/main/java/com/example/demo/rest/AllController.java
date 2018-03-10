@@ -1,7 +1,9 @@
 package com.example.demo.rest;
 
-
+import com.example.demo.model.BaseEntity;
+import com.example.demo.model.Department;
 import com.example.demo.model.Employee;
+import com.example.demo.service.DepartmentService;
 import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,23 +13,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/employees")
-public class EmployeeController {
+@RequestMapping(value = "api/all")
+public class AllController {
 
     @Autowired
+
     private EmployeeService employeeService;
+    @Autowired
+    private DepartmentService departmentService;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Employee>> listAllEmployees() {
+    public ResponseEntity<List<List<? extends BaseEntity>>> listAllEmployees() {
+
         List<Employee> employees = this.employeeService.listAll();
+        List<Department> departments = this.departmentService.listAll();
 
-        if (employees.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        List<List<? extends BaseEntity>> allList = new ArrayList<>();
 
-        return new ResponseEntity<>(employees, HttpStatus.OK);
+        allList.add(employees);
+        allList.add(departments);
+
+        return new ResponseEntity<>(allList, HttpStatus.OK);
     }
 }

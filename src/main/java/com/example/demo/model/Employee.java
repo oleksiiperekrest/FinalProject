@@ -23,7 +23,6 @@ public class Employee extends BaseEntity {
     @Column(name = "last_name")
     private String lastName;
 
-
     @ManyToMany
     @JoinTable(name = "employee_department",
             joinColumns = @JoinColumn(name = "employee_id", referencedColumnName="id"),
@@ -42,5 +41,12 @@ public class Employee extends BaseEntity {
     @MapKeyColumn(name = "start_date")
     @Column(name = "salary")
     private Map<LocalDate, BigDecimal> salaryMap = new HashMap<>();
+
+    @ManyToMany
+    @JoinTable(name = "employee_status",
+            joinColumns = @JoinColumn(name = "employee_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name = "status_id", referencedColumnName="id"))
+    @MapKeyColumn(name = "date")
+    private Map<LocalDate, Status> statusMap = new HashMap<>();
 
 }
