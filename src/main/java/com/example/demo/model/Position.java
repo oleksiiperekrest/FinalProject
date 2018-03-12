@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,11 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "statuses")
+@Table(name = "positions")
 @Getter
 @Setter
 @ToString
-public class Status extends BaseEntity {
+public class Position extends BaseEntity {
+
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "description")
     private String description;

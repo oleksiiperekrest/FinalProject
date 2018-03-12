@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-@Table(name = "Departments")
+@Table(name = "departments")
 @Getter
 @Setter
 @ToString

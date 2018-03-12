@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-@Table(name = "Events")
+@Table(name = "events")
 @Getter
 @Setter
 @ToString

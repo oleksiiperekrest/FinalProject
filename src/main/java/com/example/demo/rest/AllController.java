@@ -21,13 +21,13 @@ import java.util.List;
 public class AllController {
 
     @Autowired
-
     private EmployeeService employeeService;
+
     @Autowired
     private DepartmentService departmentService;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<List<? extends BaseEntity>>> listAllEmployees() {
+    public ResponseEntity<List<List<? extends BaseEntity>>> listAll() {
 
         List<Employee> employees = this.employeeService.listAll();
         List<Department> departments = this.departmentService.listAll();

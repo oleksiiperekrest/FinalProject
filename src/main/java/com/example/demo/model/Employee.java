@@ -30,10 +30,11 @@ public class Employee extends BaseEntity {
     @MapKeyColumn(name = "start_date")
     private Map<LocalDate, Department> departmentMap = new HashMap<>();
 
-    @ElementCollection
-    @JoinTable(name = "employee_position")
+    @ManyToMany
+    @JoinTable(name = "employee_position",
+            joinColumns = @JoinColumn(name = "employee_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name = "position_id", referencedColumnName="id"))
     @MapKeyColumn(name = "start_date")
-    @Column(name = "position")
     private Map<LocalDate, String> positionMap = new HashMap<>();
 
     @ElementCollection
